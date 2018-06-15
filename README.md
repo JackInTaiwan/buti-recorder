@@ -143,14 +143,15 @@ Set a dict parameter for Recorder.models.
 
 * **Descriptions**
 ***models***
-<br>Example,
-<pre><code>models = {
+<br>Example
+```python
+models = {
     "gan_generator": model_gn,
     "gan_discriminator": model_dn,
 }
 
 Recorder.set_models(models)
-</code></pre>
+```
 
 * **Notes** 
 <br>Note that it is required before call `butirecorder.Recorder.save()` if you don't load any models
@@ -220,10 +221,11 @@ for i in range(10) :
      recorder.step()
 
 recorder.save_checkpoints()
-</code></pre>
+```
 
 Then, the saved .json file would contain these data like this:
-<pre><code>{
+```
+{
     "recorder_name": ...,
     ...,
     "data": {
@@ -281,7 +283,7 @@ recorder.save_models()
 ```
 
 Then, it will save models like this
-```bash
+```console
 $ ls ./test/
 trainQQ_CNN.pkl   trainQQ_Lstm.pkl   trainQQ.json
 ```
