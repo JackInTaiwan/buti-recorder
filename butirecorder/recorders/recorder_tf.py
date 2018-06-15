@@ -10,7 +10,7 @@ import torch as tor
 
 
 class Recorder :
-    def __init__(self, mode, save_mode, save_path, recorder_name=None, models={}, info="") :
+    def __init__(self, mode, save_mode, save_path=None, recorder_name=None, models={}, info="") :
         self.id = uuid.uuid1().hex
         self.mode = mode
         self.recorder_name = recorder_name
@@ -145,6 +145,14 @@ class Recorder :
         with open(save_fp, "w") as f :
             json.dump(output_json, f)
 
+
+    def save_models(self) :
+        if self.save_mode == "state_dict" :
+            self.save_state_dict()
+
+        elif self.save_mode == "model" :
+            # to be finished
+            pass
 
     def save_state_dict(self) :
         if len(self.models) < 1 :

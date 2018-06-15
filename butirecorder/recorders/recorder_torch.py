@@ -8,7 +8,7 @@ import torch as tor
 
 
 class Recorder :
-    def __init__(self, mode, save_mode, save_path, recorder_name=None, models={}, info="") :
+    def __init__(self, mode, save_mode, save_path, recorder_name=None, models={}, desp="") :
         self.id = uuid.uuid1().hex
         self.mode = mode
         self.recorder_name = recorder_name
@@ -17,7 +17,7 @@ class Recorder :
         self.models = models
         self.model_names = list(models.keys()) if len(models.keys()) > 0 else None
 
-        self.info = info
+        self.desp = desp
         self.data = dict()
 
         self.steps = 0
@@ -56,7 +56,7 @@ class Recorder :
         super().__setattr__(key, value)
 
 
-    def set(self, models) :
+    def set_models(self, models) :
         self.models = models
         self.model_names = list(models.keys()) if len(list(models.keys())) > 0 else None
 
@@ -67,7 +67,7 @@ class Recorder :
         data = json.loads(data)
         self.id = data["id"]
         self.recorder_name = data["recorder_name"]
-        self.info = data["info"]
+        self.desp = data["desp"]
         self.mode = data["mode"]
         self.model_names = data["model_names"]
         self.save_path = data["save_path"] if self.save_path else self.save_path
@@ -134,7 +134,7 @@ class Recorder :
         output["save_path"] = self.save_path
         output["mode"] = self.mode
         output["model_names"] = self.model_names
-        output["info"] = self.info
+        output["desp"] = self.desp
         output["steps"] = self.steps
         output["epochs"] = self.epochs
         output["data"] = self.data

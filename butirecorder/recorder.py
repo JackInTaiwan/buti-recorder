@@ -29,7 +29,7 @@ class Recorder :
                 "Recorder only support 'torch', 'keras' and 'tf' modes, but got {}.".format(kwargs["mode"])
             )
 
-        self.set = self.recorder.set
+        self.set_models = self.recorder.set_models
         self.step = self.recorder.step
         self.epoch = self.recorder.epoch
         self.checkpoint = self.recorder.checkpoint
