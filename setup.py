@@ -8,10 +8,8 @@ setup(
 	author='Yuan Chia, Zheng',
 	author_email='jackconvolution@gmail.com',
 	packages=['butirecorder', 'butirecorder.recorders'],
+    python_requires='>=3.0',
+    install_requires=[
+        "numpy",
+    ]
 )
-
-setup(install_requires=[
-    "numpy",
-])
-
-setup(python_requires='>=3.0')
