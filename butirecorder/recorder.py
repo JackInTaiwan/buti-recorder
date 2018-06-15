@@ -119,7 +119,7 @@ class Recorder :
             return False
 
 
-    def save_record(self) :
+    def save_checkpoints(self) :
         save_fp = os.path.join(self.save_path, self.recorder_name)
 
         output = dict()
