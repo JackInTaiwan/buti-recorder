@@ -7,7 +7,7 @@ setup(
 	url='https://github.com/jackintaiwan/buti-recorder',
 	author='Yuan Chia, Zheng',
 	author_email='jackconvolution@gmail.com',
-	packages=['butirecorder', 'recorders'],
+	packages=['butirecorder', 'butirecorder.recorders'],
 )
 
 setup(install_requires=[
