@@ -13,3 +13,5 @@ setup(
 setup(install_requires=[
     "numpy",
 ])
+
+setup(python_requires='>=3.0')
