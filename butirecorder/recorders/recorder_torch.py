@@ -84,9 +84,13 @@ class Recorder :
         if len(self.models) > 0 :
             for name in self.models :
                 model_fp = os.path.join(self.save_path, "{}_{}.pkl".format(self.recorder_name, name))
+
                 if self.save_mode == "state_dict" :
                     model_state_dict = tor.load(model_fp)
                     self.models[name].load_state_dict(model_state_dict)
+
+                elif self.save_mode == "model" :
+                    self.models[name] = tor.load(model_fp)
 
         else :
             raise ValueError("Recorder parameter 'model_name' length must > 0, but got 0.\
