@@ -370,9 +370,10 @@ for i in range(1000) :      # train 1000 steps
     
     if recorder.steps % 100 == 0 :
         recorder.save_models()
-</code></pre>
+```
 Then, it will create files in your dir path:
-<pre><code>$ ls ./
+```console
+$ ls ./
 gan.json   gan_gn.pkl   gan_dn.pkl 
 ```
 
