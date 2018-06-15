@@ -106,5 +106,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# customized dirs
+test/
+
 # customized files
 *notes*.py
