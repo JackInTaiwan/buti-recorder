@@ -6,7 +6,13 @@ A python module providing clear and beautified methods to make recording and sav
 
 <br><br><br>
 ## Contents
-[Release](#Release)
+[Release](#release)
+<br>[Requirements](#requirements)
+<br>[Introduction](#introduction)
+<br>[Installation](#installation)
+<br>[Documantation](#documentation)
+<br>[Examples](#examples)
+
 
 
 
