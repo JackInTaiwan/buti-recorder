@@ -194,7 +194,8 @@ resume training.
 <br>Save the training process information customized by you with corresponding step.
 Must call `butirecorder.Recorder.save_checkpoints()` to save the record into .json file.
 <br>Example (for Pytorch)
-<pre><code>from butirecorder import Recorder
+```python
+from butirecorder import Recorder
 from your_model import your_model
 
 model_1 = your_model()
@@ -233,7 +234,7 @@ Then, the saved .json file would contain these data like this:
     },
     ...
 }
-</code></pre>
+```
  
  
 <br><h3 id="Recorder.save_checkpoints"> butirecorder.Recorder.save_checkpoints() </h3>
@@ -263,7 +264,7 @@ before saving state_dicts/models.
 <br>Note that the saving method would depend on parameter `Recorder.save_mode` which is described above.
 <br>The save model files' names would be the "Recorder.recorder_name" + model_name.
 <br>Example
-<pre><code>
+```python
 recorder = Recorder({
     ...,
     recorder_name: "trainQQ",
@@ -283,7 +284,7 @@ Then, it will save models like this
 <pre><code>
 $ ls ./test/
 trainQQ_CNN.pkl   trainQQ_Lstm.pkl   trainQQ.json
-</code></pre>
+```
 
 
 <br><h3 id="Recorder.load"> butirecorder.Recorder.load(json_fp) </h3>
@@ -319,7 +320,7 @@ instead of dir path saved in previous json file. If you don't want to change the
 <br><br><br>
 ## Examples
 ### Initial and save (on Pytorch)
-<pre><code>
+```python
 import pytorch
 from butirecorder import Recorder
 from my_model import gan_gn, gan_dn
@@ -371,7 +372,7 @@ for i in range(1000) :      # train 1000 steps
 Then, it will create files in your dir path:
 <pre><code>$ ls ./
 gan.json   gan_gn.pkl   gan_dn.pkl 
-</code></pre>
+```
 
 <br><br>
 ### Initial and load (on Pytorch)
