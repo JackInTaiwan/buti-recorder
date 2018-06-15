@@ -278,10 +278,10 @@ recorder = Recorder({
 ...
 
 recorder.save_models()
-</code></pre>
+```
 
 Then, it will save models like this
-<pre><code>
+```bash
 $ ls ./test/
 trainQQ_CNN.pkl   trainQQ_Lstm.pkl   trainQQ.json
 ```
