@@ -70,7 +70,7 @@ class Recorder :
         self.desp = data["desp"]
         self.mode = data["mode"]
         self.model_names = data["model_names"]
-        self.save_path = data["save_path"] if self.save_path else self.save_path
+        self.save_path = data["save_path"] if not self.save_path else self.save_path
         self.data = data["data"]
         self.steps = data["steps"]
         self.epochs = data["epochs"]
@@ -142,6 +142,15 @@ class Recorder :
 
         with open(save_fp, "w") as f :
             json.dump(output_json, f)
+
+
+    def save_models(self) :
+        if self.save_mode == "state_dict" :
+            self.save_state_dict()
+
+        elif self.save_mode == "model" :
+            # to be finished
+            pass
 
 
     def save_state_dict(self) :
