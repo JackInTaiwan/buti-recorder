@@ -34,7 +34,7 @@ class Recorder :
         self.epoch = self.recorder.epoch
         self.checkpoint = self.recorder.checkpoint
         self.save_checkpoints = self.recorder.save_checkpoints
-        self.save_state_dict = self.recorder.save_state_dict
+        self.save_models = self.recorder.save_models
         self.load = self.recorder.load
         self.load_recorder = self.recorder.load_recorder
         self.load_models = self.recorder.load_models

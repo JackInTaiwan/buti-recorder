@@ -8,7 +8,7 @@ import torch as tor
 
 
 class Recorder :
-    def __init__(self, mode, save_mode, save_path, recorder_name=None, models={}, desp="") :
+    def __init__(self, mode, save_mode, save_path=None, recorder_name=None, models={}, desp="") :
         self.id = uuid.uuid1().hex
         self.mode = mode
         self.recorder_name = recorder_name
@@ -83,7 +83,7 @@ class Recorder :
 
         if len(self.models) > 0 :
             for name in self.models :
-                model_fp = os.path.join(self.save_path, "{}.pkl".format(name))
+                model_fp = os.path.join(self.save_path, "{}_{}.pkl".format(self.recorder_name, name))
                 if self.save_mode == "state_dict" :
                     model_state_dict = tor.load(model_fp)
                     self.models[name].load_state_dict(model_state_dict)
@@ -126,6 +126,12 @@ class Recorder :
 
 
     def save_checkpoints(self) :
+        required_list = [self.recorder_name, self.save_path, ]
+        for item in required_list :
+            if item == None :
+                raise ValueError(
+                    "Method save_checkpoints() requires that {} is not None. Set it before saving.".format(item)
+                )
         save_fp = "{}.json".format(os.path.join(self.save_path, self.recorder_name))
 
         output = dict()
@@ -156,14 +162,19 @@ class Recorder :
     def save_state_dict(self) :
         if len(self.models) < 1 :
             raise ValueError("Method save_state_dict requires Recorder.model_names length > 0, but got {}.".format(len(self.models)))
-
         else :
             if not isinstance(self.models, dict) and len(self.model_names) != 1 :
                 raise ValueError("Method save_state_dict requires that type of Recorder.models is dict, or length of Recorder.model_names is 1.")
-
             else :
+                required_list = [self.recorder_name, self.save_path, ]
+                for item in required_list:
+                    if item == None:
+                        raise ValueError(
+                            "Method save_checkpoints() requires that {} is not None. Set it before saving.".format(item)
+                        )
+
                 for key in self.models :
-                    model_save_fp = "{}.pkl".format(os.path.join(self.save_path, key))
+                    model_save_fp = os.path.join(self.save_path, "{}_{}.pkl".format(self.recorder_name, key))
                     tor.save(self.models[key].state_dict(), model_save_fp)
 
                 self.save_mode = "state_dict"

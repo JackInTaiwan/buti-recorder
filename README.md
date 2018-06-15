@@ -5,6 +5,25 @@ A python module providing clear and beautified methods to make recording and sav
 
 
 <br><br><br>
+## Release
+**Latest**
+v0.0
+
+
+
+
+<br><br><br>
+## Requirements
+**numpy**
+<br>**json**
+<br>**pytorch (optional)**
+<br>**keras (optional)**
+<br>**tensorflow (optional)**
+
+
+
+
+<br><br><br>
 ## Introduction
 We provide a systematic package tool to make recording and saving models much easier and clear when you're 
 training models for deep learning.
@@ -40,11 +59,23 @@ You can use setpy.py to install the package. Please run the following in your te
 <br><br><br>
 ## Documentation
 Beautirecorder support tow main functions :
-* Saving information and models
-* Dumping saved information
+* **Saving information and models**<br>
+[butirecorder.Recorder](#Recorder)
+[butirecorder.Recorder.steps](#Recorder.steps)
+[butirecorder.Recorder.epochs](#Recorder.epochs)
+[butirecorder.Recorder.set_models()](#Recorder.set_models)
+[butirecorder.Recorder.step()](#Recorder.step)
+[butirecorder.Recorder.epoch()](#Recorder.epoch)
+[butirecorder.Recorder.checkpoint()](#Recorder.checkpoint)
+[butirecorder.Recorder.save_checkpoints()](#Recorder.save_checkpoints)
+[butirecorder.Recorder.save_models()](#Recorder.save_models)
+[butirecorder.Recorder.load()](#Recorder.load)
+
+* **Dumping saved information**
+Unfinished.
 
 
-<h3 id="test"> butirecorder.Recorder(mode, save_mode, save_path=None, recorder_name=None, models={}, desp="")</h3>
+<br><h3 id="Recorder"> butirecorder.Recorder(mode, save_mode, save_path=None, recorder_name=None, models={}, desp="")</h3>
 
 * **Type**
 <br>class
@@ -82,7 +113,8 @@ the same dir path, don't split them into two dir path manually, or you will get 
 <br>The descriptoin would be stored in .json also, then you can access in future if needed.
 
 
-### *butirecorder.Recorder.steps*
+<br><h3 id="Recorder.steps"> butirecorder.Recorder.steps </h3>
+
 * **Type**
 <br>int
 
@@ -91,7 +123,8 @@ the same dir path, don't split them into two dir path manually, or you will get 
 <br>Must call `butirecorder.Recorder.step()` to update `butirecorder.Recorder.steps` after one step.
 
 
-### *butirecorder.Recorder.epochs*
+<br><h3 id="Recorder.epochs"> butirecorder.Recorder.epochs </h3>
+
 * **Type**: int
 
 * **Notes**
@@ -99,7 +132,8 @@ the same dir path, don't split them into two dir path manually, or you will get 
 <br>Must call `butirecorder.Recorder.epoch()` to update `butirecorder.Recorder.epochs` after one epoch.
  
 
-### *butirecorder.Recorder.set_models(models)*
+<br><h3 id="Recorder.set_models"> butirecorder.Recorder.set_models(models)</h3>
+
 * **Type**
 <br>function
 
@@ -123,7 +157,8 @@ Recorder.set_models(models)
 by calling `butirecorder.Recorder.save()`
 
 
-### butirecorder.Recorder.step()
+<br><h3 id="Recorder.step"> butirecorder.Recorder.step() </h3>
+
 * **Type**
 <br>function
 
@@ -135,7 +170,8 @@ your training process to save correct process information.
 resume training.
 
 
-### butirecorder.Recorder.epoch()
+<br><h3 id="Recorder.epoch"> butirecorder.Recorder.epoch() </h3>
+
 * **Type**
 <br>function
 
@@ -145,7 +181,8 @@ resume training.
 resume training.
 
 
-### butirecorder.Recorder.checkpoint(data)
+<br><h3 id="Recorder.checkpoint"> butirecorder.Recorder.checkpoint(data) </h3>
+
 * **Type**
 <br>function
 
@@ -199,27 +236,58 @@ Then, the saved .json file would contain these data like this:
 </code></pre>
  
  
-### butirecorder.Recorder.save_checkpoints()
+<br><h3 id="Recorder.save_checkpoints"> butirecorder.Recorder.save_checkpoints() </h3>
+
 * **Type**
 <br>function
 
 * **Notes**
 <br>Save/update training process information `Recorder.data` into .json.
-<br>Note that you must call this function to write `Recorder.data` into .json file, `butirecorder.Recorder.checkpoint()`
-only save them (on RAM) but not write into .json.
+<br>`Recorder.recorder_name` and `Recorder.save_path` is required before saving .json file.
+<br>Note that you must call this function to write/update `Recorder.data` into .json file, `butirecorder.Recorder.checkpoint()`
+only save them (on RAM) but not write them into .json.
 <br>You may raise the question why we split saving task into two functions. The reason is that you may call `butirecorder.Recorder.checkpoint()`
 frequently, but if we write every updated `Recorder.data` into .json file, it may cause writing crash/problem due to extremely high frequency.
 So, do not call `butirecorder.Recorder.save_checkpoints()` too frequently (recommend <1~50 1/s depending on your computer)
 
 
-### butirecorder.Recorder.save_models()
+<br><h3 id="Recorder.save_models"> butirecorder.Recorder.save_models() </h3>
+
 * **Type**
 <br>function
+
+* **Notes**
 <br>Save the models in `Recorder.models`.
+<br>`Recorder.recorder_name`, `Recorder.save_path`, `Recorder.save_mode` and `Recorder.models` are required
+before saving state_dicts/models.
 <br>Note that the saving method would depend on parameter `Recorder.save_mode` which is described above.
+<br>The save model files' names would be the "Recorder.recorder_name" + model_name.
+<br>Example
+<pre><code>
+recorder = Recorder({
+    ...,
+    recorder_name: "trainQQ",
+    save_path: "./test/",
+    models: {
+        "CNN": cnn,
+        "Lstm": lstm,
+    }
+})
+
+...
+
+recorder.save_models()
+</code></pre>
+
+Then, it will save models like this
+<pre><code>
+$ ls ./test/
+trainQQ_CNN.pkl   trainQQ_Lstm.pkl   trainQQ.json
+</code></pre>
 
 
-### butirecorder.Recorder.load(json_fp)
+<br><h3 id="Recorder.load"> butirecorder.Recorder.load(json_fp) </h3>
+
 * **Type**
 <br>function
 
@@ -245,4 +313,120 @@ So, do not call `butirecorder.Recorder.save_checkpoints()` too frequently (recom
 instead of dir path saved in previous json file. If you don't want to change the dir path saved in .json, then you just don't set parameter
 `Recorder.save_path`.
 
-[aaa](#test)
+
+
+
+<br><br><br>
+## Examples
+### Initial and save (on Pytorch)
+<pre><code>
+import pytorch
+from butirecorder import Recorder
+from my_model import gan_gn, gan_dn
+
+gn = gan_gn()
+dn = gan_dn()
+
+### init Recorder
+recorder = Recorder(
+    mode="torch",
+    recorder_name="gan",
+    save_mode="state_dict",
+    save_path="./",
+    models={
+        "gn": gn,
+        "dn": dn,
+    }
+)
+
+### your training
+for i in range(1000) :      # train 1000 steps
+    print ("training step:", recorder.steps)
+    # your training in one step
+    ...
+    ...
+    acc = ...
+    real_loss = ...
+    fake_loss = ...
+    ...
+    ...
+    
+    recorder.checkpoint({
+        "acc": acc,
+        "real_loss": real_loss,
+        "fake_loss": fake_loss,
+    })
+    
+    recorder.step()     # required, to add 1 to step
+    
+    if recorder.steps % 10 == 0 :
+        recorder.save_checkpoints()
+    
+    if recorder.steps % 50 == 0 :
+        recorder.epoch()
+    
+    if recorder.steps % 100 == 0 :
+        recorder.save_models()
+</code></pre>
+Then, it will create files in your dir path:
+<pre><code>$ ls ./
+gan.json   gan_gn.pkl   gan_dn.pkl 
+</code></pre>
+
+<br><br>
+### Initial and load (on Pytorch)
+<pre><code>
+import pytorch
+from butirecorder import Recorder
+from my_model import gan_gn, gan_dn
+
+gn = gan_gn()
+dn = gan_dn()
+
+### init Recorder
+recorder = Recorder(
+    mode="torch",
+    save_mode="state_dict",     # how you save, how you load
+    models={
+        "gn": gn,
+        "dn": dn,
+    },
+    #save_path="./xxx/yyy/",    #optional, if you want to set one new save_path 
+)
+
+### load Recorder and models
+json_fp = "./gan.json"
+models = recorder.load(json_fp)
+
+gn = models["gn"]
+dn = models["dn"]
+
+### your training
+for i in range(100) :       # resume training from the step stored last time
+    print ("training step:", recorder.steps)
+    # your training in one step
+    ...
+    ...
+    acc = ...
+    real_loss = ...
+    fake_loss = ...
+    ...
+    ...
+    
+    recorder.checkpoint({
+        "acc": acc,
+        "real_loss": real_loss,
+        "fake_loss": fake_loss,
+    })
+    
+    recorder.step()     # required, to add 1 to step
+    
+    if recorder.steps % 10 == 0 :
+        recorder.save_checkpoints()
+    
+    if recorder.steps % 50 == 0 :
+        recorder.epoch()
+    
+    if recorder.steps % 100 == 0 :
+        recorder.save_models()
+</code></pre>
