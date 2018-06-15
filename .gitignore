@@ -111,3 +111,7 @@ test/
 
 # customized files
 *notes*.py
+*.json
+*.pkl
+*.png
+*.jpg
