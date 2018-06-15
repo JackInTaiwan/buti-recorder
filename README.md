@@ -42,7 +42,7 @@ Beautirecorder support mainly tow functions :
 * parameters :
 <br>**mode** [str] [options: ("torch", "keras", "tf")]
 <br>**recorder_name** [str]
-<br>**save_mode** [str] [options: ("state_dict", "model")]
+<br>**save_mode** [str] [options: ("state_dict", "model")] <div id="save_mode" />
 <br>**save_path** [str]
 
 <br>**models** [dict]
@@ -163,7 +163,7 @@ So, do not call `butirecorder.Recorder.save_checkpoints()` too frequently (recom
 #### butirecorder.Recorder.save_model()
 * type : function
 <br>Save the models in `Recorder.models`.
-<br>Note that the saving method would depend on parameter `Recorder.save_mode` which is described [here](#jump).
+<br>Note that the saving method would depend on parameter `Recorder.save_mode` which is described [here](#save_mode).
 
 #### butirecorder.Recorder.load(json_fp)
 * type : function
@@ -172,6 +172,3 @@ So, do not call `butirecorder.Recorder.save_checkpoints()` too frequently (recom
 <br> Note that if you set parameter `Recorder.save_path` before loading, then `Recorder` would change the dir path of `Recorder.save_path`
 instead of dir path saved in previous json file. If you don't want to change the dir path, then you just don't set parameter
 `Recorder.save_path`.
-
-
-<div id="jump">第一章</div>
