@@ -44,7 +44,7 @@ Beautirecorder support mainly tow functions :
 <br>**recorder_name** [str]
 <br>**save_mode** [str] [options: ("state_dict", "model")]
 <br>**save_path** [str]
-<span id="jump">aa</span>
+
 <br>**models** [dict]
 <br>**desp** [str]
 * descriptions :
@@ -172,3 +172,6 @@ So, do not call `butirecorder.Recorder.save_checkpoints()` too frequently (recom
 <br> Note that if you set parameter `Recorder.save_path` before loading, then `Recorder` would change the dir path of `Recorder.save_path`
 instead of dir path saved in previous json file. If you don't want to change the dir path, then you just don't set parameter
 `Recorder.save_path`.
+
+
+<h2 id="jump">第一章</h2>
