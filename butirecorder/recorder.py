@@ -1,8 +1,15 @@
-from .recorders import (
+try :
+    from .recorders import (
     recorder_torch,
     recorder_keras,
     recorder_tf,
-)
+    )
+except :
+    from recorders import (
+    recorder_torch,
+    recorder_keras,
+    recorder_tf,
+    )
 
 
 
