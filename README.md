@@ -174,4 +174,4 @@ instead of dir path saved in previous json file. If you don't want to change the
 `Recorder.save_path`.
 
 
-<span id="jump">第一章</h2>
+<div id="jump">第一章</div>
