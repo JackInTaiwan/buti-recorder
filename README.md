@@ -61,15 +61,15 @@ You can use setpy.py to install the package. Please run the following in your te
 Beautirecorder support tow main functions :
 * **Saving information and models**<br>
 [butirecorder.Recorder](#Recorder)
-[butirecorder.Recorder.steps](#Recorder.steps)
-[butirecorder.Recorder.epochs](#Recorder.epochs)
-[butirecorder.Recorder.set_models()](#Recorder.set_models)
-[butirecorder.Recorder.step()](#Recorder.step)
-[butirecorder.Recorder.epoch()](#Recorder.epoch)
-[butirecorder.Recorder.checkpoint()](#Recorder.checkpoint)
-[butirecorder.Recorder.save_checkpoints()](#Recorder.save_checkpoints)
-[butirecorder.Recorder.save_models()](#Recorder.save_models)
-[butirecorder.Recorder.load()](#Recorder.load)
+<br>[butirecorder.Recorder.steps](#Recorder.steps)
+<br>[butirecorder.Recorder.epochs](#Recorder.epochs)
+<br>[butirecorder.Recorder.set_models()](#Recorder.set_models)
+<br>[butirecorder.Recorder.step()](#Recorder.step)
+<br>[butirecorder.Recorder.epoch()](#Recorder.epoch)
+<br>[butirecorder.Recorder.checkpoint()](#Recorder.checkpoint)
+<br>[butirecorder.Recorder.save_checkpoints()](#Recorder.save_checkpoints)
+<br>[butirecorder.Recorder.save_models()](#Recorder.save_models)
+<br>[butirecorder.Recorder.load()](#Recorder.load)
 
 * **Dumping saved information**
 Unfinished.
@@ -375,11 +375,10 @@ gan.json   gan_gn.pkl   gan_dn.pkl
 
 <br><br>
 ### Initial and load (on Pytorch)
-<pre><code>
+```python
 import pytorch
 from butirecorder import Recorder
 from my_model import gan_gn, gan_dn
-
 gn = gan_gn()
 dn = gan_dn()
 
@@ -429,4 +428,4 @@ for i in range(100) :       # resume training from the step stored last time
     
     if recorder.steps % 100 == 0 :
         recorder.save_models()
-</code></pre>
+```
