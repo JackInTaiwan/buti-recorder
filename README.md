@@ -160,7 +160,8 @@ A Parameter stores training steps continuously.
 <br><h3 id="Recorder.epochs"> butirecorder.Recorder.epochs </h3>
 A Parameter stores training epochs continuously.
 
-* **Type**: int
+* **Type**
+<br>int
 
 * **Notes**
 <br>Obtain training epochs.
@@ -367,8 +368,10 @@ import pytorch
 from butirecorder import Recorder
 from my_model import gan_gn, gan_dn
 
+
 gn = gan_gn()
 dn = gan_dn()
+
 
 ### init Recorder
 recorder = Recorder(
@@ -382,9 +385,11 @@ recorder = Recorder(
     }
 )
 
+
 ### your training
 for i in range(1000) :      # train 1000 steps
     print ("training step:", recorder.steps)
+    
     # your training in one step
     ...
     ...
@@ -423,8 +428,11 @@ gan.json   gan_gn.pkl   gan_dn.pkl
 import pytorch
 from butirecorder import Recorder
 from my_model import gan_gn, gan_dn
+
+
 gn = gan_gn()
 dn = gan_dn()
+
 
 ### init Recorder
 recorder = Recorder(
@@ -437,12 +445,14 @@ recorder = Recorder(
     #save_path="./xxx/yyy/",    #optional, if you want to set one new save_path 
 )
 
+
 ### load Recorder and models
 json_fp = "./gan.json"
 models = recorder.load(json_fp)
 
 gn = models["gn"]
 dn = models["dn"]
+
 
 ### your training
 for i in range(100) :       # resume training from the step stored last time
