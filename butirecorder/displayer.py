@@ -8,7 +8,7 @@ import numpy as np
 def show_info_table(dir_path, keys=None) :
     if keys == None :
         key_words = ["acc", "loss"]
-        avg_nums = [1, 10, 50]
+        avg_nums = [1, 10]
 
         table = []
 
