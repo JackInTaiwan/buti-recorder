@@ -106,7 +106,6 @@ class Recorder :
 
     def checkpoint(self, data) :
         steps = self.steps
-        print (self.data)
         for key in data :
             if key not in self.data :
                 self.data[key] = [(steps, data[key])]

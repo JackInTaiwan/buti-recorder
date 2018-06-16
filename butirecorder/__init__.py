@@ -5,3 +5,7 @@ from .recorder import (
 from .extractor import (
     Extractor,
 )
+
+from .displayer import (
+    show_info_table,
+)
