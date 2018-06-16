@@ -54,22 +54,39 @@ training models for deep learning.
 
 
 <br><br><br>
-## Installation
+## Installation and Update
 Here are two main methods provided to allow you access butirecorder 
 package :
 
-#### 1. Install through pip/pip3 (Recommended)
+#### 1-1. Install through pip/pip3 (Recommended)
 You can use pip/pip3 to install the package. Please run the following in your terminal
-<br>`pip3 install git+https://github.com/JackInTaiwan/buti-recorder.git`
+```console
+pip3 install git+https://github.com/JackInTaiwan/buti-recorder.git
+```
 <br>As done, you can import the package in your codes.
 
-#### 2. Install through setup.py
+#### 1-2. Install through setup.py
 You can use setpy.py to install the package. Please run the following in your terminal
-<br>`python3 setup.py install`
+```console
+in buti-recorder/
+python3 setup.py install
+```
 <br>Note that `python3` is to run your python according to your python version.
 <br>As done, you can import the package in your codes.
 
 
+#### 2-1. Update through pip/pip3 (Recommend)
+You can use pip/pip3 to update the package when new version is released. Run
+```console
+$ pip3 install --upgrade git+https://github.com/JackInTaiwan/buti-recorder.git
+```
+
+#### 2-2. Update through setup.py
+You can use pip/pip3 to update the package when new version is released. Run
+```console
+# in buti-recorder/  
+$ python3 setup.py install --force
+```
 
 
 <br><br><br>
@@ -88,11 +105,11 @@ Beautirecorder support tow main functions :
 <br>[butirecorder.Recorder.load()](#Recorder.load)
 
 * **Dumping saved information**
-Unfinished.
+<br>Unfinished.
 
 
 <br><h3 id="Recorder"> butirecorder.Recorder(mode, save_mode, save_path=None, recorder_name=None, models={}, desp="")</h3>
-
+The main class stores and manipulates training process information and models.
 * **Type**
 <br>class
 
@@ -130,6 +147,7 @@ the same dir path, don't split them into two dir path manually, or you will get 
 
 
 <br><h3 id="Recorder.steps"> butirecorder.Recorder.steps </h3>
+A Parameter stores training steps continuously.
 
 * **Type**
 <br>int
@@ -140,6 +158,7 @@ the same dir path, don't split them into two dir path manually, or you will get 
 
 
 <br><h3 id="Recorder.epochs"> butirecorder.Recorder.epochs </h3>
+A Parameter stores training epochs continuously.
 
 * **Type**: int
 
@@ -149,6 +168,7 @@ the same dir path, don't split them into two dir path manually, or you will get 
  
 
 <br><h3 id="Recorder.set_models"> butirecorder.Recorder.set_models(models)</h3>
+Set a dict into Recorder.models parameters which stores your training models.
 
 * **Type**
 <br>function
@@ -168,13 +188,13 @@ models = {
 
 Recorder.set_models(models)
 ```
-
 * **Notes** 
 <br>Note that it is required before call `butirecorder.Recorder.save()` if you don't load any models
 by calling `butirecorder.Recorder.save()`
 
 
 <br><h3 id="Recorder.step"> butirecorder.Recorder.step() </h3>
+Update training steps. 
 
 * **Type**
 <br>function
@@ -188,6 +208,7 @@ resume training.
 
 
 <br><h3 id="Recorder.epoch"> butirecorder.Recorder.epoch() </h3>
+Update training epochss.
 
 * **Type**
 <br>function
@@ -199,6 +220,7 @@ resume training.
 
 
 <br><h3 id="Recorder.checkpoint"> butirecorder.Recorder.checkpoint(data) </h3>
+Save customized and flexible training process information.
 
 * **Type**
 <br>function
@@ -256,6 +278,7 @@ Then, the saved .json file would contain these data like this:
  
  
 <br><h3 id="Recorder.save_checkpoints"> butirecorder.Recorder.save_checkpoints() </h3>
+Write training process information into corresponding .json file.
 
 * **Type**
 <br>function
@@ -271,6 +294,7 @@ So, do not call `butirecorder.Recorder.save_checkpoints()` too frequently (recom
 
 
 <br><h3 id="Recorder.save_models"> butirecorder.Recorder.save_models() </h3>
+Save your trained models.
 
 * **Type**
 <br>function
