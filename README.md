@@ -105,7 +105,9 @@ Beautirecorder support tow main functions :
 <br>[butirecorder.Recorder.load()](#Recorder.load)
 
 * **Dumping saved information**
-<br>Unfinished.
+[butirecorder.Extractor](#Extractor)
+[butirecorder.Extractor.get_data(key)](#Extractor.get_data)
+
 
 
 <br><h3 id="Recorder"> butirecorder.Recorder(mode, save_mode, save_path=None, recorder_name=None, models={}, desp="")</h3>
@@ -357,6 +359,93 @@ trainQQ_CNN.pkl   trainQQ_Lstm.pkl   trainQQ.json
 instead of dir path saved in previous json file. If you don't want to change the dir path saved in .json, then you just don't set parameter
 `Recorder.save_path`.
 
+
+<br><h3 id="Extractor"> butirecorder.Extractor(json_fp) </h3>
+A class which reads and loads .json file.
+
+* **Type**
+<br>class
+
+* **Parameters**
+<br>***json_fp*** [str]
+
+* **Descriptions**
+<br>***json_fp***
+<br>The .json file path you saved by Recorder.
+<br>Example
+<pre><code>from butirecorder import Extractor
+extracotr = Extractor("./project/records/GAN.json")
+</code></pre>
+
+
+<br><h3 id="Extractor.get_data"> butirecorder.Extractor.get_data(key) </h3>
+Get saved training process record by corresponding key. 
+
+* **Type**
+<br>function
+
+* **Parameters**
+<br>***key*** [str]
+<br>***return*** [(list, list)]
+
+* **Descriptions**
+<br>***key***
+<br>The key you save checkpoints, e.g. "acc", "loss", and so on.
+<br>***return***
+Two lists, step_list and value_list.
+Example
+```
+...
+step_list, value_list = extractor.get_data("acc")
+# step_list = [1, 10, 20, 30, ..., 100]
+# value_list = [0.2, 0.44, 0.52, ..., 0.63]
+```
+
+* **Notes**
+It's flexible for you to access training process information stored in .json, then you
+are allowed to analyze or draw plots with `matplotlib` or something else.  
+
+
+<br><h3 id="butirecorder.show_info_table"> butirecorder.show_info_table(dir_path) </h3>
+Print all key information stored in different .json files in the same dir_path.
+
+* **Type**
+<br>function
+
+* **Parameters**
+<br>***path_dir*** [str]
+
+* **Descriptions**
+<br>***path_dir***
+<br>The path_dir where .json files are stored which you want to see and compare.
+<br>Example
+<br>Now the files stored in `~/project/gan_record/`
+```console
+# ~/project/gan_record/
+$ ls
+$ gan_1.json   gan_2.json   gan_3.json
+  gan_1_gn.pkl   gan_1_dn.pkl   gan_2_gn.pkl ...   
+```
+
+<br>use `show_info_table`
+```python
+# ~/project/show.py
+from butirecorder import show_info_table
+
+show_info_table("./gan_record")
+```
+
+<br>Then the terminal/console would print the information.
+```console
+# ~/project/
+$ python3 show.py
+
+|gan_1    |loss (1): 0.00256   |loss (10): 0.00221   |acc (1): 0.55     |acc (10): 0.4456
+|gan_2    |loss (1): 0.0034    |loss (10): 0.002     |acc (1): 0.456    |acc (10): 0.4777
+|gan_3    |loss (1): 0.00301   |loss (10): 0.0029    |acc (1): 0.45     |acc (10): 0.439
+```
+
+* **Notes**
 
 
 
