@@ -93,8 +93,8 @@ $ python3 setup.py install --force
 <br><br><br>
 ## Documentation
 Beautirecorder support tow main functions :
-* **Saving information and models**<br>
-[butirecorder.Recorder](#Recorder)
+* **Saving information and models**
+<br>[butirecorder.Recorder](#Recorder)
 <br>[butirecorder.Recorder.steps](#Recorder.steps)
 <br>[butirecorder.Recorder.epochs](#Recorder.epochs)
 <br>[butirecorder.Recorder.set_models()](#Recorder.set_models)
@@ -106,9 +106,9 @@ Beautirecorder support tow main functions :
 <br>[butirecorder.Recorder.load()](#Recorder.load)
 
 * **Dumping saved information**
-[butirecorder.Extractor](#Extractor)
-[butirecorder.Extractor.get_data()](#Extractor.get_data)
-[butirecorder.show_info_table()](#show_info_table)
+<br>[butirecorder.Extractor](#Extractor)
+<br>[butirecorder.Extractor.get_data()](#Extractor.get_data)
+<br>[butirecorder.show_info_table()](#show_info_table)
 
 
 
