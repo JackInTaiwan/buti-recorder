@@ -27,6 +27,7 @@ class Recorder :
             self.save_checkpoints()
 
 
+
     def __setattr__(self, key, value) :
         # checking types
         attr_types = {
@@ -56,52 +57,21 @@ class Recorder :
         super().__setattr__(key, value)
 
 
+
+    def step(self) :
+        self.steps += 1
+
+
+
+    def epoch(self) :
+        self.epochs += 1
+
+
+
     def set_models(self, models) :
         self.models = models
         self.model_names = list(models.keys()) if len(list(models.keys())) > 0 else None
 
-
-    def load_recorder(self, recorder_fp) :
-        with open(recorder_fp) as f :
-            data = json.load(f)
-        data = json.loads(data)
-        self.id = data["id"]
-        self.recorder_name = data["recorder_name"]
-        self.desp = data["desp"]
-        self.mode = data["mode"]
-        self.model_names = data["model_names"]
-        self.save_path = data["save_path"] if not self.save_path else self.save_path
-        self.data = data["data"]
-        self.steps = data["steps"]
-        self.epochs = data["epochs"]
-
-        self.save_checkpoints()
-
-
-    def load_models(self) :
-        import torch as tor
-
-        if len(self.models) > 0 :
-            for name in self.models :
-                model_fp = os.path.join(self.save_path, "{}_{}.pkl".format(self.recorder_name, name))
-
-                if self.save_mode == "state_dict" :
-                    model_state_dict = tor.load(model_fp)
-                    self.models[name].load_state_dict(model_state_dict)
-
-                elif self.save_mode == "model" :
-                    self.models[name] = tor.load(model_fp)
-
-        else :
-            raise ValueError("Recorder parameter 'model_name' length must > 0, but got 0.\
-             You may give a wrong json file, or you don't save the json file correctly.")
-
-
-    def load(self, recorder_fp) :
-        self.load_recorder(recorder_fp)
-        self.load_models()
-
-        return self.models
 
 
     def checkpoint(self, data) :
@@ -110,13 +80,14 @@ class Recorder :
             if key not in self.data :
                 self.data[key] = [(steps, data[key])]
             else :
-                if not self.check_step_duplicate(steps, self.data[key]) :
+                if not self._check_step_duplicate(steps, self.data[key]) :
                     self.data[key].append((steps, data[key]))
                 else :
                     self.data[key][-1] = (steps, data[key])
 
 
-    def check_step_duplicate(self, steps, list) :
+
+    def _check_step_duplicate(self, steps, list) :
         step_list = [pair[0] for pair in list]
         if steps in step_list :
             if len(step_list) > 1 and step_list.index(steps) != len(step_list) -1 :
@@ -126,6 +97,7 @@ class Recorder :
 
         else :
             return False
+
 
 
     def save_checkpoints(self) :
@@ -153,6 +125,7 @@ class Recorder :
             json.dump(output_json, f)
 
 
+
     def save_models(self) :
         if self.save_mode == "state_dict" :
             self.save_state_dict()
@@ -160,6 +133,7 @@ class Recorder :
         elif self.save_mode == "model" :
             # to be finished
             pass
+
 
 
     def save_state_dict(self) :
@@ -183,9 +157,46 @@ class Recorder :
                 self.save_mode = "state_dict"
 
 
-    def step(self) :
-        self.steps += 1
+
+    def load(self, recorder_fp) :
+        self._load_recorder(recorder_fp)
+        self._load_models()
+
+        return self.models
 
 
-    def epoch(self) :
-        self.epochs += 1
+
+    def _load_recorder(self, recorder_fp) :
+        with open(recorder_fp) as f :
+            data = json.load(f)
+        data = json.loads(data)
+        self.id = data["id"]
+        self.recorder_name = data["recorder_name"]
+        self.desp = data["desp"]
+        self.mode = data["mode"]
+        self.model_names = data["model_names"]
+        self.save_path = data["save_path"] if not self.save_path else self.save_path
+        self.data = data["data"]
+        self.steps = data["steps"]
+        self.epochs = data["epochs"]
+
+        self.save_checkpoints()
+
+
+
+    def _load_models(self) :
+        import torch as tor
+
+        if len(self.models) > 0 :
+            for name in self.models :
+                model_fp = os.path.join(self.save_path, "{}_{}.pkl".format(self.recorder_name, name))
+
+                if self.save_mode == "state_dict" :
+                    model_state_dict = tor.load(model_fp)
+                    self.models[name].load_state_dict(model_state_dict)
+
+                elif self.save_mode == "model" :
+                    self.models[name] = tor.load(model_fp)
+
+        else :
+            raise ValueError("Recorder parameter 'model_name' length must > 0, but got 0. You may give a wrong json file, or you don't save the json file correctly.")

@@ -1,7 +1,7 @@
 from .recorders import (
-recorder_torch,
-recorder_keras,
-recorder_tf,
+    recorder_torch,
+    recorder_keras,
+    recorder_tf,
 )
 
 
@@ -36,5 +36,3 @@ class Recorder :
         self.save_checkpoints = self.recorder.save_checkpoints
         self.save_models = self.recorder.save_models
         self.load = self.recorder.load
-        self.load_recorder = self.recorder.load_recorder
-        self.load_models = self.recorder.load_models
