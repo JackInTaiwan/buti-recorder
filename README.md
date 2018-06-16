@@ -19,7 +19,8 @@ A python package providing clear and beautified methods to make recording and sa
 <br><br><br>
 ## Release
 #### Latest
-**v0.0** *2018.06.15*
+**v0.1** *2018.06.16*
+<br>**v0.0** *2018.06.15*
 
 
 
@@ -106,7 +107,8 @@ Beautirecorder support tow main functions :
 
 * **Dumping saved information**
 [butirecorder.Extractor](#Extractor)
-[butirecorder.Extractor.get_data(key)](#Extractor.get_data)
+[butirecorder.Extractor.get_data()](#Extractor.get_data)
+[butirecorder.show_info_table()](#show_info_table)
 
 
 
@@ -406,7 +408,7 @@ It's flexible for you to access training process information stored in .json, th
 are allowed to analyze or draw plots with `matplotlib` or something else.  
 
 
-<br><h3 id="butirecorder.show_info_table"> butirecorder.show_info_table(dir_path, keys=None, avg_nums=[1, 10]) </h3>
+<br><h3 id="show_info_table"> butirecorder.show_info_table(dir_path, keys=None, avg_nums=[1, 10]) </h3>
 Print all key information stored in different .json files in the same dir_path.
 
 * **Type**
