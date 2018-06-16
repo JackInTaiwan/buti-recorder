@@ -406,20 +406,23 @@ It's flexible for you to access training process information stored in .json, th
 are allowed to analyze or draw plots with `matplotlib` or something else.  
 
 
-<br><h3 id="butirecorder.show_info_table"> butirecorder.show_info_table(dir_path) </h3>
+<br><h3 id="butirecorder.show_info_table"> butirecorder.show_info_table(dir_path, keys=None, avg_nums=[1, 10]) </h3>
 Print all key information stored in different .json files in the same dir_path.
 
 * **Type**
 <br>function
 
 * **Parameters**
-<br>***path_dir*** [str]
+<br>***dir_path*** [str]
+<br>***keys*** [list]
+<br>***avg_nums*** [list]
 
 * **Descriptions**
-<br>***path_dir***
-<br>The path_dir where .json files are stored which you want to see and compare.
+<br>***dir_path***
+<br>The dir_path where .json files are stored which you want to see and compare.
 <br>Example
 <br>Now the files stored in `~/project/gan_record/`
+
 ```console
 # ~/project/gan_record/
 $ ls
@@ -428,6 +431,7 @@ $ gan_1.json   gan_2.json   gan_3.json
 ```
 
 <br>use `show_info_table`
+
 ```python
 # ~/project/show.py
 from butirecorder import show_info_table
@@ -436,6 +440,7 @@ show_info_table("./gan_record")
 ```
 
 <br>Then the terminal/console would print the information.
+
 ```console
 # ~/project/
 $ python3 show.py
@@ -445,7 +450,62 @@ $ python3 show.py
 |gan_3    |loss (1): 0.00301   |loss (10): 0.0029    |acc (1): 0.45     |acc (10): 0.439
 ```
 
+***keys***
+<br>If you don't give `keys`, the default is None and it will search any keys in .json which contain "acc" or "loss" patterns. Take example, if here
+are "accuracy", "Loss", "Fake_acc" or something else, it will print all these automatically.
+<br>The key corresponding to the information you stored.
+<br>Example
+```python
+# ~/project/show.py
+...
+show_info_table(
+    dir_path="./project/gan_record/",
+    keys=["acc", "fake_acc",],
+)
+```
+
+```console
+# ~/project/
+$ python3 show.py
+
+|gan_1    |acc (1): 0.256   |acc (10): 0.221   |fake_acc (1): 0.2501   |fake_acc (10): None
+|gan_1    |acc (1): 0.3     |acc (10): 0.284   |fake_acc (1): 0.230    |fake_acc (10): 0.2049  
+```
+
+***avg_nums***
+<br>Obtain averaged value in the record list. The num in avg_nums symbolizes the last num values
+stored in the record list.
+<br>Example
+If we have the record in `gan_1.json` like this
+```
+{
+    "acc": [(1, 0.1), (10, 0.2), (20, 0.3), (30, 0.4), (40, 0.5)]
+}
+```
+
+```python
+# ~/project/show.py
+...
+show_info_table(
+    dir_path="./project/gan_record/",
+    keys=["acc",],
+    avg_nums=[1, 5, 10],
+)
+```
+
+```console
+# ~/project/
+$ python3 show.py
+
+|gan_1    |acc (1): 0.5   |acc (5): 0.3   |acc (10): None
+  
+```
+Note that if `num` in `avg_nums` is larger than the list (out of range), the averaged value would be `None`.
+
+
 * **Notes**
+<br>This function provide good way to help compare your training performances between different models with various structures or parameters.
+
 
 
 
