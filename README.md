@@ -1,5 +1,5 @@
 # buti-recorder
-A python module providing clear and beautified methods to make recording and saving trained model systematic and clarified.
+A python package providing clear and beautified methods to make recording and saving trained model systematic and clarified.
 
 
 
@@ -18,19 +18,23 @@ A python module providing clear and beautified methods to make recording and sav
 
 <br><br><br>
 ## Release
-**Latest**
-v0.0
+#### Latest
+**v0.0** *2018.06.15*
 
 
 
 
 <br><br><br>
 ## Requirements
-**numpy**
-<br>**json**
-<br>**pytorch (optional)**
-<br>**keras (optional)**
-<br>**tensorflow (optional)**
+**Python**
+<br> python >= 3.5
+
+**Packages on python**
+<br>json
+<br>numpy >= 1.13
+<br>pytorch >= 3.0 (optional)
+<br>keras (optional)
+<br>tensorflow (optional)
 
 
 
