@@ -185,8 +185,6 @@ class Recorder :
 
 
     def _load_models(self) :
-        import torch as tor
-
         if len(self.models) > 0 :
             for name in self.models :
                 model_fp = os.path.join(self.save_path, "{}_{}.pkl".format(self.recorder_name, name))

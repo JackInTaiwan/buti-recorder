@@ -134,7 +134,7 @@ The main class stores and manipulates training process information and models.
 <br>***save_mode*** 
 <br> The way you save your trained models. Here are two usual ways to save model in Pytorch.
 <br>1. saving whole model `torch.save(model)`
-<br>2. saving model's state_dict `tor.save(model.state_dict())`
+<br>2. saving model's state_dict `pytor.save(model.state_dict())`
 <br>If you're used to carrying out method 1, set save_mode = "model"; otherwise, set save_mode = "state_dict". Then Recorder would
 save and load in the corresponding way.
 <br>***save_path***
@@ -409,6 +409,7 @@ are allowed to analyze or draw plots with `matplotlib` or something else.
 
 
 <br><h3 id="show_info_table"> butirecorder.show_info_table(dir_path, keys=None, avg_nums=[1, 10]) </h3>
+
 Print all key information stored in different .json files in the same dir_path.
 
 * **Type**
