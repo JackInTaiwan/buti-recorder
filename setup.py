@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='butirecorder',
-	version='0.1',
+	version='0.2',
 	description='A python module providing clear and beautified methods to make recording and saving trained model systematic and clarified.',
 	url='https://github.com/jackintaiwan/buti-recorder',
 	author='Yuan Chia, Zheng',

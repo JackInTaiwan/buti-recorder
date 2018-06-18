@@ -19,7 +19,8 @@ A python package providing clear and beautified methods to make recording and sa
 <br><br><br>
 ## Release
 #### Latest
-**v0.1** *2018.06.16*
+<br>**v0.2** *2018.06.18*
+<br>**v0.1** *2018.06.16*
 <br>**v0.0** *2018.06.15*
 
 
@@ -95,8 +96,8 @@ $ python3 setup.py install --force
 Beautirecorder support tow main functions :
 * **Saving information and models**
 <br>[butirecorder.Recorder](#Recorder)
-<br>[butirecorder.Recorder.steps](#Recorder.steps)
-<br>[butirecorder.Recorder.epochs](#Recorder.epochs)
+<br>[butirecorder.Recorder.get_steps()](#Recorder.get_steps)
+<br>[butirecorder.Recorder.get_epochs()](#Recorder.get_epochs)
 <br>[butirecorder.Recorder.set_models()](#Recorder.set_models)
 <br>[butirecorder.Recorder.step()](#Recorder.step)
 <br>[butirecorder.Recorder.epoch()](#Recorder.epoch)
@@ -150,7 +151,7 @@ the same dir path, don't split them into two dir path manually, or you will get 
 <br>The descriptoin would be stored in .json also, then you can access in future if needed.
 
 
-<br><h3 id="Recorder.steps"> butirecorder.Recorder.steps </h3>
+<br><h3 id="Recorder.get_steps"> butirecorder.Recorder.get_steps() </h3>
 A Parameter stores training steps continuously.
 
 * **Type**
@@ -540,7 +541,7 @@ recorder = Recorder(
 
 ### your training
 for i in range(1000) :      # train 1000 steps
-    print ("training step:", recorder.steps)
+    print ("training step:", recorder.get_steps())
     
     # your training in one step
     ...
@@ -559,13 +560,13 @@ for i in range(1000) :      # train 1000 steps
     
     recorder.step()     # required, to add 1 to step
     
-    if recorder.steps % 10 == 0 :
+    if recorder.get_steps() % 10 == 0 :
         recorder.save_checkpoints()
     
-    if recorder.steps % 50 == 0 :
+    if recorder.get_steps() % 50 == 0 :
         recorder.epoch()
     
-    if recorder.steps % 100 == 0 :
+    if recorder.get_steps() % 100 == 0 :
         recorder.save_models()
 ```
 Then, it will create files in your dir path:
@@ -608,7 +609,7 @@ dn = models["dn"]
 
 ### your training
 for i in range(100) :       # resume training from the step stored last time
-    print ("training step:", recorder.steps)
+    print ("training step:", recorder.get_steps())
     # your training in one step
     ...
     ...
@@ -626,12 +627,12 @@ for i in range(100) :       # resume training from the step stored last time
     
     recorder.step()     # required, to add 1 to step
     
-    if recorder.steps % 10 == 0 :
+    if recorder.get_steps() % 10 == 0 :
         recorder.save_checkpoints()
     
-    if recorder.steps % 50 == 0 :
+    if recorder.get_steps() % 50 == 0 :
         recorder.epoch()
     
-    if recorder.steps % 100 == 0 :
+    if recorder.get_steps() % 100 == 0 :
         recorder.save_models()
 ```

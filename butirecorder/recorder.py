@@ -32,8 +32,8 @@ class Recorder :
         self.set_models = self.recorder.set_models
         self.step = self.recorder.step
         self.epoch = self.recorder.epoch
-        self.steps = self.recorder.steps
-        self.epochs = self.recorder.epochs
+        self.get_steps = self.recorder.get_steps
+        self.get_epochs = self.recorder.get_epochs
         self.models = self.recorder.models
         self.checkpoint = self.recorder.checkpoint
         self.save_checkpoints = self.recorder.save_checkpoints

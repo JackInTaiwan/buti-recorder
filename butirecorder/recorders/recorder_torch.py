@@ -68,6 +68,16 @@ class Recorder :
 
 
 
+    def get_steps(self) :
+        return self.steps
+
+
+
+    def get_epochs(self) :
+        return self.epochs
+
+
+
     def set_models(self, models) :
         self.models = models
         self.model_names = list(models.keys()) if len(list(models.keys())) > 0 else None
