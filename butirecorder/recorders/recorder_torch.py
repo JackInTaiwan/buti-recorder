@@ -23,8 +23,8 @@ class Recorder :
         self.steps = 0
         self.epochs = 0
 
-        if not os.path.exists(os.path.join(self.save_path, "{}.json".format(self.recorder_name))) :
-            self.save_checkpoints()
+        #if not os.path.exists(os.path.join(self.save_path, "{}.json".format(self.recorder_name))) :
+        #    self.save_checkpoints()
 
 
 
@@ -115,7 +115,7 @@ class Recorder :
         for item in required_list :
             if item == None :
                 raise ValueError(
-                    "Method save_checkpoints() requires that {} is not None. Set it before saving.".format(item)
+                    "Method save_checkpoints() requires that recorder_name and save_path is not None. Set it before saving."
                 )
         save_fp = "{}.json".format(os.path.join(self.save_path, self.recorder_name))
 
