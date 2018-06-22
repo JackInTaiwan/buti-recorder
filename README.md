@@ -19,6 +19,7 @@ A python package providing clear and beautified methods to make recording and sa
 <br><br><br>
 ## Release
 #### Latest
+<br>**v0.3** *2018.06.22*
 <br>**v0.2** *2018.06.18*
 <br>**v0.1** *2018.06.16*
 <br>**v0.0** *2018.06.15*
