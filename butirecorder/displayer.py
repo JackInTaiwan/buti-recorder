@@ -65,8 +65,7 @@ def show_info_table(dir_path, keys=None, avg_nums=[1, 10]) :
 
                 except :
                     pass
-
-    _print_info_table(table)
+        _print_info_table(table)
 
 
 
