@@ -70,7 +70,9 @@ def show_info_table(dir_path, keys=None, avg_nums=[1, 10]) :
 
 
 def _print_info_table(table) :
-    tabal = sorted(table, key=lambda x: x["recorder_name"])
+    print (table)
+    table = sorted(table, key=lambda x: x["recorder_name"])
+    print (table)
     for datum in table :
         print ("|{:<10}".format(datum["recorder_name"]), end="")
         for key in datum :
